@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/w2calculator/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/w2calculator/static/js/main.af8ef2a9.chunk.js",
+    "main.js.map": "/w2calculator/static/js/main.af8ef2a9.chunk.js.map",
+    "runtime-main.js": "/w2calculator/static/js/runtime-main.2ad08f8e.js",
+    "runtime-main.js.map": "/w2calculator/static/js/runtime-main.2ad08f8e.js.map",
+    "static/js/2.3b73f6be.chunk.js": "/w2calculator/static/js/2.3b73f6be.chunk.js",
+    "static/js/2.3b73f6be.chunk.js.map": "/w2calculator/static/js/2.3b73f6be.chunk.js.map",
+    "static/js/3.3f841bdb.chunk.js": "/w2calculator/static/js/3.3f841bdb.chunk.js",
+    "static/js/3.3f841bdb.chunk.js.map": "/w2calculator/static/js/3.3f841bdb.chunk.js.map",
+    "index.html": "/w2calculator/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/w2calculator/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.3b73f6be.chunk.js.LICENSE.txt": "/w2calculator/static/js/2.3b73f6be.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/w2calculator/static/media/logo.103b5fa1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ad08f8e.js",
+    "static/js/2.3b73f6be.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.af8ef2a9.chunk.js"
+  ]
+}
