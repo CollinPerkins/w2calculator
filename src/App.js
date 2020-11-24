@@ -35,7 +35,6 @@ class App extends React.Component {
         nonTaxableDeductionsOther: 0,
         netPay: 103780.55,
         taxablePay: 103931.68,
-        federalTaxWithheld: 16332.88,
         socialSecurityTax: 6885.18,
         medicare: 1610.24
       },
@@ -61,7 +60,6 @@ class App extends React.Component {
         nonTaxableDeductionsOther: 0,
         netPay: 3584.31,
         taxablePay: 4397.64,
-        federalTaxWithheld: 435.62,
         socialSecurityTax: 298.92,
         medicare: 69.90
       },
@@ -87,7 +85,6 @@ class App extends React.Component {
         nonTaxableDeductionsOther: 0,
         netPay: 0,
         taxablePay: 0,
-        federalTaxWithheld: 0,
         socialSecurityTax: 0,
         medicare: 0
       },
@@ -113,7 +110,6 @@ class App extends React.Component {
         nonTaxableDeductionsOther: 0,
         netPay: 0,
         taxablePay: 0,
-        federalTaxWithheld: 0,
         socialSecurityTax: 0,
         medicare: 0
       }
@@ -170,7 +166,7 @@ class App extends React.Component {
 		const name = target.props ? target.props.name : target.name;
 
 		const edited = this.state.yearToDate;
-		edited[name] = value;
+		edited[name] = Number(value);
 		edited.isActive = true;
 		this.setState({
 			yearToDate: edited
@@ -183,7 +179,7 @@ class App extends React.Component {
 		const name = target.props ? target.props.name : target.name;
 
 		const edited = this.state.currentPayPeriod;
-		edited[name] = value;
+		edited[name] = Number(value);
 		edited.isActive = true;
 		this.setState({
 			currentPayPeriod: edited
@@ -245,7 +241,37 @@ class App extends React.Component {
     edited.disability = this.state.caculatedEndOfYear.disability + this.state.yearToDate.disability;
     edited.lifeInsurance = this.state.caculatedEndOfYear.lifeInsurance + this.state.yearToDate.lifeInsurance;
     edited.nonTaxableDeductionsOther = this.state.caculatedEndOfYear.nonTaxableDeductionsOther + this.state.yearToDate.nonTaxableDeductionsOther;
-    edited.netPay = this.state.caculatedEndOfYear.netPay + this.state.yearToDate.netPay;
+    edited.netPay = (
+      this.state.yearToDate.grossWage +
+      this.state.yearToDate.bonus +
+      this.state.yearToDate.commission +
+      this.state.yearToDate.vacation +
+      this.state.yearToDate.holidays +
+      this.state.yearToDate.incomeOther
+    ) - (
+      this.state.yearToDate.medicalHealthcare +
+      this.state.yearToDate.dental +
+      this.state.yearToDate.pensionOr401k +
+      this.state.yearToDate.healthSavingsAccount +
+      this.state.yearToDate.vision +
+      this.state.yearToDate.flexSpending +
+      this.state.yearToDate.taxableDeductionsOther
+    ) + (
+      this.state.caculatedEndOfYear.grossWage +
+      this.state.caculatedEndOfYear.bonus +
+      this.state.caculatedEndOfYear.commission +
+      this.state.caculatedEndOfYear.vacation +
+      this.state.caculatedEndOfYear.holidays +
+      this.state.caculatedEndOfYear.incomeOther
+    ) - (
+      this.state.caculatedEndOfYear.medicalHealthcare +
+      this.state.caculatedEndOfYear.dental +
+      this.state.caculatedEndOfYear.pensionOr401k +
+      this.state.caculatedEndOfYear.healthSavingsAccount +
+      this.state.caculatedEndOfYear.vision +
+      this.state.caculatedEndOfYear.flexSpending +
+      this.state.caculatedEndOfYear.taxableDeductionsOther
+    )
     edited.taxablePay = this.state.caculatedEndOfYear.taxablePay + this.state.yearToDate.taxablePay;
     edited.federalTaxWithheld = this.state.caculatedEndOfYear.federalTaxWithheld + this.state.yearToDate.federalTaxWithheld;
     edited.socialSecurityTax = this.state.caculatedEndOfYear.socialSecurityTax + this.state.yearToDate.socialSecurityTax;
@@ -488,15 +514,6 @@ class App extends React.Component {
               />
             </div>
             <div>
-              <label>federalTaxWithheld</label>
-              <input 
-                type="number"
-                name="federalTaxWithheld"
-                defaultValue={this.state.yearToDate.federalTaxWithheld}
-                onChange={this.onChangeYTD}
-              />
-            </div>
-            <div>
               <label>medicare</label>
               <input 
                 type="number"
@@ -703,15 +720,6 @@ class App extends React.Component {
                 type="number"
                 name="taxablePay"
                 defaultValue={this.state.currentPayPeriod.taxablePay}
-                onChange={this.onChangeCurrentPayPeriod}
-              />
-            </div>
-            <div>
-              <label>federalTaxWithheld</label>
-              <input 
-                type="number"
-                name="federalTaxWithheld"
-                defaultValue={this.state.currentPayPeriod.federalTaxWithheld}
                 onChange={this.onChangeCurrentPayPeriod}
               />
             </div>
